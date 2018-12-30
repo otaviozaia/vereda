@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block base %} 
+{% load static %}
+            <div class="div_login">	
+				<br><br><br>      
+		        <form method ="POST" align ='center' ><br/><br/>  
+					{% csrf_token %}
+					{{ form.non_field_errors }}
+					<img src ="{% static 'images/logovereda.png' %}" width= "48%" id = "logo"/><br/>           
+					{% for field in form %}
+					<br/><label class="text_blue" for="{{ field.label_tag }}"></label><br>
+					{{ field }}<br>
+					{% endfor %}
+			        <br/><input type = "submit" name = "login" value = "LOGIN" placeholder = "" id ="login"/><br/><br/>
+                    <a href = "{% url 'recover' %}" id ="forgot">Esqueceu a senha?</a>	 
+		        </form>
+            </div> 
+{% endblock %}

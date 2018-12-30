@@ -54,9 +54,10 @@ def NovoAluno(request):
             name = request.POST.get("nome")
             email = request.POST.get("email")
             celular = request.POST.get("celular")
-            ano = request.POST.get("ano")
+            turma = request.POST.get("turma")
+            ra = request.POST.get("ra")
             tipo = "A"
-            Aluno.objects.create_user(username = username,password = password,name = name,email= email,celular = celular,tipo = tipo, ano = ano)
+            Aluno.objects.create_user(username = username,password = password,name = name,email= email,celular = celular,turma = turma,ra = ra,tipo = tipo)
             user = authenticate(username=username,password=password)
             login(request, user)
             return render(request,"first_edit_senha.html")

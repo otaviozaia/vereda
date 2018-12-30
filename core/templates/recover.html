@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block base %}
+{% load static %}
+<body>
+    <br/><br/><br/><br/>
+   <center><img src ="{% static 'images/logovereda.PNG' %}" width="20%"/></center>  <br/><br/><br/><br/>
+   
+    <form action ="" method ="POST" align ='center'>
+        <label for = "Email" id = "x"><font class="text_blue">Para redefinir sua senha, digite o seu endereço de e-mail. (O e-mail deve ser o mesmo que você informou no ato do seu cadastro)</font></label><br/><br/><br/>
+        <input type = "email" name ="email" placeholder="       Digite o seu email" required id="buttom"><br/><br/>
+        <input type = "submit" name = "" value = "LOGIN" placeholder = "" id = "login"/ >
+    </form>   
+{% endblock %}

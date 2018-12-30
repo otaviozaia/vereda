@@ -34,7 +34,6 @@ class User(PermissionsMixin,AbstractBaseUser):
     name = models.CharField('Nome',max_length=100)
     email = models.EmailField('Email',unique=True)
     celular = models.CharField('Celular',max_length=11)
-    foto = models.ImageField()
     dtExpiracao = models.DateField('Data de Expiração',default='1900-01-01')
     tipo = models.CharField(max_length=1,default='C')
     is_active = models.BooleanField(blank=True,default=True)
@@ -60,14 +59,11 @@ class User(PermissionsMixin,AbstractBaseUser):
         verbose_name_plural = 'Usuários'
 
 class Professor(User):
-        ano = models.CharField(max_length=30)
+        ano = models.CharField(max_length=5)
 
 class Assistente(User):
-        ano = models.CharField(max_length=30)
+        ano = models.CharField(max_length=5)
         
-
-class Aluno(User):
-        ra = models.CharField(max_length=7)
 
 class Disciplina(models.Model):
         nome = models.CharField(max_length=60, unique=True)
@@ -87,12 +83,20 @@ class Disciplina(models.Model):
 
 
 class AnoEnsino(models.Model):
-        nome = models.CharField(max_length=60,unique=True)
+        nome = models.CharField(max_length=5,unique=True)
         idCoordenador = models.ForeignKey(User,null=True,on_delete = models.DO_NOTHING)
 
 class Turma(models.Model):
         nome = models.CharField(max_length=60,unique=True)
         idProfessor = models.ForeignKey(Professor,null=True,on_delete = models.DO_NOTHING)
+
+
+class Aluno(User):
+        ra = models.CharField(max_length=7)
+        turma = models.CharField(max_length=2, unique=False, null=True)
+        #o correto seria o modelo abaixo para turma quando houver turmas já cadastradas, pra efeito teste, usaremos o código acima
+        #turma = models.ForeignKey(Turma,null=True,on_delete = models.DO_NOTHING)
+
 
         
 class Habilidade(models.Model):

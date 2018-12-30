@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block base %}
+{% load static %}
+<body>
+    <br/><br/><br/><br/>
+   <center><img src ="{% static 'images/logovereda.PNG' %}" width="20%"/></center>  <br/><br/><br/><br/>
+    <form action ="{% url 'first_edit_senha' %}" method ="POST" align ='center'>
+        {% csrf_token %}
+        <label for = "Email" id = "x"><font class="text_blue">Por favor, cadastre uma nova senha, caso contrário</br> não conseguirá fazer login em uma próxima vez</font></label><br/><br/><br/>
+        <input type = "password" name ="novasenha" placeholder="Digite a nova senha" required id="buttom"><br/><br/>
+        <input type = "password" name ="confirmsenha" placeholder="Confirme a nova senha" required id="buttom"><br/><br/>
+        <input type = "submit" name = "" value = "NovaSenha" placeholder = "" id = "login"/ >
+    </form>   
+{% endblock %}
