@@ -1,0 +1,1 @@
+web: gunicorn vereda.wsgi --log-file -
