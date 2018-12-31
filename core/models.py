@@ -30,7 +30,7 @@ class ContasManager(BaseUserManager):
 
 class User(PermissionsMixin,AbstractBaseUser):
     username = models.CharField('Login',max_length=50,unique=True)
-    password = models.CharField('Senha',max_length=20)
+    password = models.CharField('Senha',max_length=200)
     name = models.CharField('Nome',max_length=100)
     email = models.EmailField('Email',unique=True)
     celular = models.CharField('Celular',max_length=11)
