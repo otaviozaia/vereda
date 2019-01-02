@@ -6,54 +6,76 @@
     	<meta charset="utf-8" />
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<title>Vereda</title>
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/cascatacss.css' %}" />
-		<script type="text/javascript" src="{% static 'js/javascript.js' %}"  charset="utf-8" async defer></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/cssstyle.css' %}" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	</head>
 	<body>
-    	<header>
-        	<img src="https://escolavereda.com.br/portasabertas/wp-content/uploads/2018/10/logo_H_599x138.png" align='left' width="300" height="100"/><br><br>
-        	<div class="divNav">
-				<nav>
-					<a href="{% url 'index' %}" class="text_link">Principal</a>&nbsp;&nbsp;|
-					{% if user.is_authenticated %}
-					<a href="{% url 'logout' %}" class="text_link">Sair</a>&nbsp;&nbsp;|
-					{% else %}
-					<a href="{% url 'login' %}" class="text_link">Entrar</a>&nbsp;&nbsp;|
-					{% endif %}
-					{% if user %}
-						{% if user.tipo == 'C' %}
-						<a href="{% url 'novaDisciplina' %}" class="text_link">Nova Disciplina</a>&nbsp;&nbsp;|
-						<a href="{% url 'novaHabilidade' %}" class="text_link">Nova Habilidade</a>&nbsp;&nbsp;|
-						<a href="{% url 'novaTurma' %}" class="text_link">Nova Turma</a>&nbsp;&nbsp;|
-						{% endif %}
-					{% endif %}
-					{% if not user.is_authenticated %}
-					<a href="{% url 'NovoAluno' %}" class="text_link">Novo Aluno</a>&nbsp;&nbsp;|
-					<a href="{% url 'NovoProfessor' %}" class="text_link">Novo Professor</a>&nbsp;&nbsp;|
-					<a href="{% url 'NovoCoordenador' %}" class="text_link">Novo Coordenador</a>&nbsp;&nbsp;|
-					{% endif %}
-					{% if user %}
-						{% if user.tipo == 'C' %}
-						<a href="{% url 'areaUser' %}" class="text_link">Minha Area</a>&nbsp;&nbsp;|
-						{% elif user.tipo == 'A' %}
-						<a href="{% url 'areaAluno' %}" class="text_link">Minha Area</a>&nbsp;&nbsp;|
-						{% elif user.tipo == 'P' %}
-						<a href="{% url 'areaProfessor' %}" class="text_link">Minha Area</a>&nbsp;&nbsp;|
-						{% endif%}
-					{% endif %}
-				</nav>
-			</div>
-    	</header></br>
-    	<br/><br/>
+		<div class="container-fluid">
+
+			<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+				<div class="row justify-content-between">
+					<div class="col-sm-4">
+						<img src="https://escolavereda.com.br/portasabertas/wp-content/uploads/2018/10/logo_H_599x138.png" class="img-fluid" alt="Logo Vereda-System">
+					</div>
+				</div>
+
+				<button class="navbar-toggler col-sm-3 mt-3" type="button" data-toggle="collapse" data-target="#navbar6">
+					<span>Menu</span>
+				</button>
+										
+				<div class="navbar-collapse collapse" id="navbar6">
+					<ul class="navbar-nav ml-auto">
+							<li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Principal</a></li>
+							{% if not user.is_authenticated %}
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Cadastro
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="{% url 'NovoCoordenador' %}">Coordenador</a>
+									<a class="dropdown-item" href="{% url 'NovoProfessor' %}">Professor</a>
+									<a class="dropdown-item" href="{% url 'NovoAluno' %}">NovoAluno</a>
+								</div>
+							</li>
+							{% endif %}
+							{% if user.is_authenticated %}
+							<li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Sair</a></li>
+							{% else %}
+							<li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Entrar</a></li>
+							{% endif %}
+							{% if user %}
+								{% if user.tipo == 'C' %}
+								<li class="nav-item"><a class="nav-link" href="{% url 'novaDisciplina' %}">Nova Disciplina</a></li>
+								<li class="nav-item"><a class="nav-link" href="{% url 'novaHabilidade' %}">Nova Habilidade</a></li>
+								<li class="nav-item"><a class="nav-link" href="{% url 'novaTurma' %}">Nova Turma</a></li>
+								{% endif %}
+							{% endif %}
+							{% if user %}
+								{% if user.tipo == 'C' %}
+								<li class="nav-item"><a class="nav-link" href="{% url 'areaUser' %}">Minha Area</a></li>
+								{% elif user.tipo == 'A' %}
+								<li class="nav-item"><a class="nav-link" href="{% url 'areaAluno' %}">Minha Area</a></li>
+								{% elif user.tipo == 'P' %}
+								<li class="nav-item"><a class="nav-link" href="{% url 'areaProfessor' %}">Minha Area</a></li>
+								{% endif%}
+							{% endif %}
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<br><br><br><br><br><br><br><br><br>
         
         {% block base %}{% endblock%}
 
-        <br/><br/><br/>
-        <footer>
-            <div class ="wrapper">
+		<br/><br/><br/>
+		<footer>
+			<div class ="wrapper">
 				(11) 4972-7350 - Escola Vereda 2019 - Todos os direitos reservados.	
-            </div>	
-        </footer>   
+			</div>	
+		</footer>   
 	</body>
 </html>

@@ -1,0 +1,30 @@
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,.8);
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255,255,255,.5);
+}
+
+/* change the color of active or hovered links */
+.navbar .nav-item.active .nav-link,
+.navbar .nav-item:hover .nav-link {
+    color: #ffffff;
+}
+
+
+/* for dropdown only - change the color of droodown */
+.navbar .dropdown-menu {
+    background-color: #f9f9fa;
+}
+.navbar .dropdown-item {
+    color: #325f92;
+}
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+    color: white;
+    background-color: rgba(219, 154, 14, 0.719);
+}
