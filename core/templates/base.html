@@ -5,7 +5,7 @@
     	<link rel="shortcut icon" href="https://escolavereda.com.br/wp-content/themes/vereda/images/favicon.ico?x78657" type="image/x-icon"/>
     	<meta charset="utf-8" />
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<title>Vereda</title>
+    	<title>Vereda-System</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="stylesheet" type="text/css" media="screen" href="{% static 'css/cssstyle.css' %}" />
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -38,7 +38,7 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="{% url 'NovoCoordenador' %}">Coordenador</a>
 									<a class="dropdown-item" href="{% url 'NovoProfessor' %}">Professor</a>
-									<a class="dropdown-item" href="{% url 'NovoAluno' %}">NovoAluno</a>
+									<a class="dropdown-item" href="{% url 'NovoAssistente' %}">Assistente</a>
 								</div>
 							</li>
 							{% endif %}
@@ -49,9 +49,16 @@
 							{% endif %}
 							{% if user %}
 								{% if user.tipo == 'C' %}
-								<li class="nav-item"><a class="nav-link" href="{% url 'novaDisciplina' %}">Nova Disciplina</a></li>
-								<li class="nav-item"><a class="nav-link" href="{% url 'novaHabilidade' %}">Nova Habilidade</a></li>
-								<li class="nav-item"><a class="nav-link" href="{% url 'novaTurma' %}">Nova Turma</a></li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Ações
+									</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="{% url 'novaDisciplina' %}">Cadastrar Disciplina</a>
+										<a class="dropdown-item" href="{% url 'novaHabilidade' %}">Cadastrar Habilidade</a>
+										<a class="dropdown-item" href="{% url 'novaTurma' %}">Registrar Nova Turma</a>
+									</div>
+								</li>
 								{% endif %}
 							{% endif %}
 							{% if user %}
@@ -61,6 +68,8 @@
 								<li class="nav-item"><a class="nav-link" href="{% url 'areaAluno' %}">Minha Area</a></li>
 								{% elif user.tipo == 'P' %}
 								<li class="nav-item"><a class="nav-link" href="{% url 'areaProfessor' %}">Minha Area</a></li>
+								{% elif user.tipo == 'S' %}
+								<li class="nav-item"><a class="nav-link" href="{% url 'areaAssistente' %}">Minha Area</a></li>
 								{% endif%}
 							{% endif %}
 					</ul>
